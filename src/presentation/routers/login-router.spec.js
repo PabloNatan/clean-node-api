@@ -1,5 +1,6 @@
 const LoginRouter = require('./login-router')
 const MissingParamError = require('../helpers/missing-param-error')
+const UnAuthorizedError = require('../helpers/unauthorized-param-error')
 
 const makeSut = () => {
   class AuthUseCaseSpy {
@@ -69,6 +70,9 @@ describe('Login Router', () => {
     expect(authUseCaseSpy.password).toBe(httpRequest.body.password)
   })
 
+  // 403 => Role
+  // 401 => no located user
+
   test('should return 401 when invalid credentials are provided', () => {
     const { sut } = makeSut()
     const httpRequest = {
@@ -80,5 +84,6 @@ describe('Login Router', () => {
 
     const httpResponse = sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(401)
+    expect(httpResponse.body).toEqual(new UnAuthorizedError())
   })
 })
