@@ -5,7 +5,8 @@
   "license": "MIT",
   "lint-staged": {
     "*.js": [
-      "standard --fix"
+      "standard --fix",
+      "npm run test:staged"
     ]
   },
   "standard": {
@@ -20,7 +21,7 @@
     "standard": "^16.0.4"
   },
   "scripts": {
-    "test": "jest",
-    "prepare": "husky install"
+    "test": "jest --watchAll",
+    "test:staged": "jest"
   }
 }
