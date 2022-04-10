@@ -5,8 +5,7 @@
   "license": "MIT",
   "lint-staged": {
     "*.js": [
-      "standard --fix",
-      "git add"
+      "standard --fix"
     ]
   },
   "devDependencies": {
@@ -16,6 +15,7 @@
     "standard": "^16.0.4"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   }
 }
