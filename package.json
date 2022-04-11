@@ -21,8 +21,10 @@
     "standard": "^16.0.4"
   },
   "scripts": {
-    "test": "jest --watch --silent --noStackTrace",
-    "test:staged": "jest --passWithNoTests --findRelatedTests --silent",
-    "test:ci": "jest --coverage --noStackTrace --silent"
+    "test": "jest --silent --colors --noStackTrace --passWithNoTests",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
+    "test:staged": "npm test -- --findRelatedTests ",
+    "test:ci": "npm test -- --coverage"
   }
 }
