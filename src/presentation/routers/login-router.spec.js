@@ -1,8 +1,5 @@
 const LoginRouter = require('./login-router')
-const MissingParamError = require('../helpers/missing-param-error')
-const InvalidParamError = require('../helpers/invalid-param-error')
-const UnAuthorizedError = require('../helpers/unauthorized-param-error')
-const ServerError = require('../helpers/server-error')
+const { InvalidParamError, MissingParamError, ServerError, UnauthorizedError } = require('../errors')
 
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
@@ -127,7 +124,7 @@ describe('Login Router', () => {
 
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(401)
-    expect(httpResponse.body).toEqual(new UnAuthorizedError())
+    expect(httpResponse.body).toEqual(new UnauthorizedError())
   })
 
   test('should return 200 when valid credentials are provided', async () => {
